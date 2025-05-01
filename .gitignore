@@ -1,0 +1,8 @@
+node_modules
+build
+npm-debug.log
+.env
+.DS_Storage
+package-lock.json
+dist
+.vscode
