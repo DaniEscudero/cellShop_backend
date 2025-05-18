@@ -1,21 +1,26 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Document, Schema } from "mongoose";
 
-export interface Role {
-    name: string;
+export interface Role extends Document {
+  name: string;
+  permisions?: string[];
 }
 
 const RoleSchema: Schema = new Schema<Role>(
-    {
-        name: {
-            type: String,
-            required: true,
-            unique: true
-        }
+  {
+    name: {
+      type: String,
+      required: true,
+      unique: true,
     },
-    {
-        timestamps: true,
-        versionKey: false
-    }
-)
+    permisions: {
+      type: [String],
+      default: [],
+    },
+  },
+  {
+    timestamps: true,
+    versionKey: false,
+  }
+);
 
-export const RoleModel = mongoose.model<Role>("Role", RoleSchema)
+export const RoleModel = mongoose.model<Role>("Role", RoleSchema);
