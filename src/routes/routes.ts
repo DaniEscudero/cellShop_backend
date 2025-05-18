@@ -36,25 +36,25 @@ export default () => {
   router.post('/auth/login', loginUser);
 
   // USERS ROUTES
-  router.get('/users', verifyToken, findUsers);
-  router.get('/users/:id', verifyToken, findUsersById);
-  router.post('/users', verifyToken, checkRoles, createUser);
-  router.put('/users/:id', verifyToken, updateUser);
-  router.delete('/users/:id', verifyToken, deleteUser);
+  router.get('/users', verifyAdminToken, findUsers);
+  router.get('/users/:id', verifyAdminToken, findUsersById);
+  router.post('/users', verifyAdminToken, checkRoles, createUser);
+  router.put('/users/:id', verifyAdminToken, updateUser);
+  router.delete('/users/:id', verifyAdminToken, deleteUser);
 
   // ROLES ROUTES
-  router.get('/roles', verifyToken, findRoles);
-  router.get('/roles/:id', verifyToken, findRoleById);
-  router.post('/roles', createRole);
-  router.put('/roles/:id', verifyToken, updateRole);
-  router.delete('/roles/:id', verifyToken, deleteRole);
+  router.get('/roles', verifyAdminToken, findRoles);
+  router.get('/roles/:id', verifyAdminToken, findRoleById);
+  router.post('/roles', verifyAdminToken);
+  router.put('/roles/:id', verifyAdminToken, updateRole);
+  router.delete('/roles/:id', verifyAdminToken, deleteRole);
 
   // PRODUCTS ROUTES
   router.get('/products', findProducts);
   router.get('/products/:id/', findProductById);
   router.post('/products/', verifyAdminToken, createProduct);
-  router.put('/products/:id/', verifyToken, updateProduct);
-  router.delete('/products/:id', verifyToken, deleteProduct);
+  router.put('/products/:id/', verifyAdminToken, updateProduct);
+  router.delete('/products/:id', verifyAdminToken, deleteProduct);
 
   return router;
 };

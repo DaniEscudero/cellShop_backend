@@ -1,11 +1,17 @@
+import { RoleEnum } from '@models/Role';
 import { User } from '@models/User';
+import { IRoleRepository, RoleRepository } from '@repositories/RoleRepository';
 import { IUserRepository, UserRepository } from '@repositories/UserRepository';
+import { IRoleService, RoleService } from '@services/RoleService';
 import { IUserService, UserService } from '@services/UserService';
 import { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 
 const userRepository: IUserRepository = new UserRepository();
 const userService: IUserService = new UserService(userRepository);
+
+const roleRepository: IRoleRepository = new RoleRepository();
+const roleService: IRoleService = new RoleService(roleRepository);
 
 export const verifyToken = async (
   req: Request,
@@ -45,9 +51,26 @@ export const verifyAdminToken = async (
     const verify = jwt.verify(token, jwtSecret) as User;
 
     const getUser = await userService.findUsersById(verify.id);
-    console.log(getUser);
     if (!getUser) {
-      res.status(400);
+      res
+        .status(400)
+        .json({
+          message: 'User not Found',
+        })
+        .send();
+      return;
+    }
+
+    const getRole = await roleService.findRoleById(getUser?.role.toString());
+    console.log(getRole);
+
+    if (!getRole || getRole.name != RoleEnum.admin) {
+      res
+        .status(401)
+        .json({
+          message: 'You need to be an administrator to access the resources',
+        })
+        .send();
       return;
     }
 

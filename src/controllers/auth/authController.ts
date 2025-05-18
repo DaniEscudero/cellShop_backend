@@ -1,3 +1,4 @@
+import { RoleEnum } from '@models/Role';
 import { User, UserInputSchema } from '@models/User';
 import { IRoleRepository, RoleRepository } from '@repositories/RoleRepository';
 import { IUserRepository, UserRepository } from '@repositories/UserRepository';
@@ -14,7 +15,7 @@ const userRepository: IUserRepository = new UserRepository();
 const userService: IUserService = new UserService(userRepository);
 
 export const registerUser = async (req: Request, res: Response) => {
-  const role: string = 'user';
+  const role: string = RoleEnum.user;
 
   try {
     const findRole = await roleService.findRoles({ name: { $in: role } });

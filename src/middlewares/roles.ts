@@ -1,3 +1,4 @@
+import { RoleEnum } from '@models/Role';
 import { IRoleRepository, RoleRepository } from '@repositories/RoleRepository';
 import { IRoleService, RoleService } from '@services/RoleService';
 import { NextFunction, Request, Response } from 'express';
@@ -12,7 +13,8 @@ export const checkRoles = async (
 ) => {
   // Si no recibe un role con el usuario
   // - le asigna el role "user" por defecto
-  const role: string = req.body && req.body?.role ? req.body.role : 'user';
+  const role: string =
+    req.body && req.body?.role ? req.body.role : RoleEnum.user;
 
   // - si viene el role, revisar en la db que ese role existe
 
