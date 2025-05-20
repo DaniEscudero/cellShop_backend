@@ -7,6 +7,7 @@ import { IUserService, UserService } from '@services/UserService';
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import { Schema } from 'mongoose';
+import { HttpErrorResponse } from 'utils/utils';
 
 const roleRepository: IRoleRepository = new RoleRepository();
 const roleService: IRoleService = new RoleService(roleRepository);
@@ -24,24 +25,40 @@ export const registerUser = async (req: Request, res: Response) => {
 
     const user: User = req.body;
 
-    console.log(user);
-
     const parseResult = UserInputSchema.safeParse(user);
 
     if (!parseResult.success) {
-      res.status(400).json({
-        message: 'Invalid input',
-        errors: parseResult.error.flatten().fieldErrors,
-      });
+      const listErrors = parseResult.error.flatten().fieldErrors;
+
+      let err = [];
+      for (const key in listErrors) {
+        err.push(`${key}: ${listErrors[key as keyof typeof listErrors]}`);
+      }
+
+      res.status(400).json(new HttpErrorResponse('Invalid User', err));
       return;
     }
 
-    const userExists = await userService.findUsersByEmail(user.email);
-    if (userExists) {
-      res.status(400).json({ message: 'Email already exists.' });
+    const emailExists = await userService.findUsersByEmail(user.email);
+    if (emailExists) {
+      res
+        .status(400)
+        .json(
+          new HttpErrorResponse('Invalid email', ['Email already exists.'])
+        );
+      return;
     }
-    if (await userService.findUsers({ username: user.username })) {
-      res.status(400).json({ message: 'Username already exists.' });
+
+    const usernameExists = await userService.findUsers({
+      username: user.username,
+    });
+    if (usernameExists.length > 0) {
+      res
+        .status(400)
+        .json(
+          new HttpErrorResponse('Invalid username', ['Username already exists'])
+        );
+      return;
     }
 
     const newUser = await userService.createUser(user);
@@ -87,7 +104,7 @@ export const loginUser = async (req: Request, res: Response) => {
       id: user._id,
       email: user.email,
       username: user.username,
-      roles: user.roles,
+      roles: user.role,
       token,
     });
   } catch (error) {

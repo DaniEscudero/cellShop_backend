@@ -9,3 +9,7 @@ export const toSlug = (text: string): string =>
     .replace(/[^\w\s-]+/g, '')
     .replace(/\s+/g, '-')
     .replace(/^-+|-+$/g, '');
+
+export class HttpErrorResponse {
+  constructor(public message: string, public errors?: string[]) {}
+}
