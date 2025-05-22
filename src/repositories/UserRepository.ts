@@ -1,5 +1,5 @@
-import { Query, Repository } from "@repositories/GenericRepository";
-import { User, UserModel } from "@models/User";
+import { Query, Repository } from '@repositories/GenericRepository';
+import { User, UserModel } from '@models/User';
 
 export interface IUserRepository extends Repository<User> {
   findOne(query: Query): Promise<User | null>;
@@ -12,15 +12,17 @@ export class UserRepository implements IUserRepository {
   }
 
   async find(query?: Query): Promise<User[]> {
-    return await UserModel.find(query || {}).exec();
+    return await UserModel.find(query || {})
+      .populate('role', 'name')
+      .exec();
   }
 
   async findOne(query: Query): Promise<User | null> {
-    return await UserModel.findOne(query).exec();
+    return await UserModel.findOne(query).populate('role', 'name').exec();
   }
 
   async findById(id: string): Promise<User | null> {
-    return await UserModel.findById(id).exec();
+    return await UserModel.findById(id).populate('role', 'name').exec();
   }
 
   async update(id: string, data: Partial<User>): Promise<User | null> {

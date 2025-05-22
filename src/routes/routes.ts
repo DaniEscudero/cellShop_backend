@@ -45,7 +45,7 @@ export default () => {
   // ROLES ROUTES
   router.get('/roles', verifyAdminToken, findRoles);
   router.get('/roles/:id', verifyAdminToken, findRoleById);
-  router.post('/roles', verifyAdminToken);
+  router.post('/roles', verifyAdminToken, createRole);
   router.put('/roles/:id', verifyAdminToken, updateRole);
   router.delete('/roles/:id', verifyAdminToken, deleteRole);
 

@@ -21,7 +21,7 @@ export const checkRoles = async (
   try {
     const findRole = await roleService.findRoles({ name: { $in: role } });
 
-    if (findRole.length == 0) {
+    if (findRole.length === 0) {
       res.status(404).send('Role not found');
       return;
     }

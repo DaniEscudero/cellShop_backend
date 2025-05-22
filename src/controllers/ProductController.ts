@@ -13,7 +13,7 @@ export const findProducts = async (req: Request, res: Response) => {
   console.log('req findPosts :>> ', req.currentUser);
   try {
     const products = await productService.findProducts();
-    if (products.length == 0) {
+    if (products.length === 0) {
       res.status(404).json({ message: 'No products Found.' });
       return;
     }

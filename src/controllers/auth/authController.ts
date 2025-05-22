@@ -49,18 +49,6 @@ export const registerUser = async (req: Request, res: Response) => {
       return;
     }
 
-    const usernameExists = await userService.findUsers({
-      username: user.username,
-    });
-    if (usernameExists.length > 0) {
-      res
-        .status(400)
-        .json(
-          new HttpErrorResponse('Invalid username', ['Username already exists'])
-        );
-      return;
-    }
-
     const newUser = await userService.createUser(user);
     res.status(201).json(newUser);
   } catch (error) {
@@ -76,26 +64,30 @@ export const loginUser = async (req: Request, res: Response) => {
 
     const user = await userService.findUsersByEmail(email);
     if (!user) {
-      res.status(400).json({
-        message: 'Invalid user or password',
-        error: 'Bad Request',
-        statusCode: '400',
-      });
+      res
+        .status(400)
+        .json(
+          new HttpErrorResponse('Invalid credentials', [
+            'Invalid user or password',
+          ])
+        );
       return;
     }
     const comparePass = await user.comparePassword(password);
 
     if (!comparePass) {
-      res.status(400).json({
-        message: 'Invalid user or password',
-        error: 'Bad Request',
-        statusCode: '400',
-      });
+      res
+        .status(400)
+        .json(
+          new HttpErrorResponse('Invalid credentials', [
+            'Invalid user or password',
+          ])
+        );
       return;
     }
 
     const token = jwt.sign(
-      { id: user._id, email: user.email, username: user.username },
+      { id: user._id, email: user.email, username: user.name },
       jwtSecret,
       { expiresIn: '1h' }
     );
@@ -103,8 +95,8 @@ export const loginUser = async (req: Request, res: Response) => {
     res.json({
       id: user._id,
       email: user.email,
-      username: user.username,
-      roles: user.role,
+      name: user.name,
+      role: user.role,
       token,
     });
   } catch (error) {

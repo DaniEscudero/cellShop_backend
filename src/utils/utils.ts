@@ -11,5 +11,5 @@ export const toSlug = (text: string): string =>
     .replace(/^-+|-+$/g, '');
 
 export class HttpErrorResponse {
-  constructor(public message: string, public errors?: string[]) {}
+  constructor(public message: string, public error?: string[]) {}
 }

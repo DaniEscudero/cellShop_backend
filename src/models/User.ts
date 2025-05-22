@@ -6,7 +6,6 @@ import { z } from 'zod';
 
 export const UserInputSchema = z.object({
   name: z.string().min(3, 'Name must be at least 3 characters'),
-  username: z.string().min(3, 'Username must be at least 3 characters'),
   email: z
     .string()
     .email()
@@ -28,11 +27,6 @@ const UserSchema: Schema = new Schema<User>(
     name: {
       type: String,
       required: true,
-    },
-    username: {
-      type: String,
-      required: true,
-      unique: true,
     },
     email: {
       type: String,
