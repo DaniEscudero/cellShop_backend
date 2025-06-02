@@ -1,9 +1,15 @@
-import { RoleEnum } from '@models/Role';
-import { User } from '@models/User';
-import { IRoleRepository, RoleRepository } from '@repositories/RoleRepository';
-import { IUserRepository, UserRepository } from '@repositories/UserRepository';
-import { IRoleService, RoleService } from '@services/RoleService';
-import { IUserService, UserService } from '@services/UserService';
+import { RoleEnum } from '../models/Role';
+import { User } from '../models/User';
+import {
+  IRoleRepository,
+  RoleRepository,
+} from '../repositories/RoleRepository';
+import {
+  IUserRepository,
+  UserRepository,
+} from '../repositories/UserRepository';
+import { IRoleService, RoleService } from '../services/RoleService';
+import { IUserService, UserService } from '../services/UserService';
 import { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 

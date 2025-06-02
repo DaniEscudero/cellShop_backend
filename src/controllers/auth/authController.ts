@@ -1,13 +1,19 @@
-import { RoleEnum } from '@models/Role';
-import { User, UserInputSchema } from '@models/User';
-import { IRoleRepository, RoleRepository } from '@repositories/RoleRepository';
-import { IUserRepository, UserRepository } from '@repositories/UserRepository';
-import { IRoleService, RoleService } from '@services/RoleService';
-import { IUserService, UserService } from '@services/UserService';
+import { RoleEnum } from '../../models/Role';
+import { User, UserInputSchema } from '../../models/User';
+import {
+  IRoleRepository,
+  RoleRepository,
+} from '../../repositories/RoleRepository';
+import {
+  IUserRepository,
+  UserRepository,
+} from '../../repositories/UserRepository';
+import { IRoleService, RoleService } from '../../services/RoleService';
+import { IUserService, UserService } from '../../services/UserService';
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import { Schema } from 'mongoose';
-import { HttpErrorResponse } from 'utils/utils';
+import { HttpErrorResponse } from '../../utils/utils';
 
 const roleRepository: IRoleRepository = new RoleRepository();
 const roleService: IRoleService = new RoleService(roleRepository);

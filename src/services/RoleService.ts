@@ -1,6 +1,6 @@
-import { IRoleRepository } from "@repositories/RoleRepository";
-import { Role } from "@models/Role";
-import { Query } from "@repositories/GenericRepository";
+import { IRoleRepository } from '../repositories/RoleRepository';
+import { Role } from '../models/Role';
+import { Query } from '../repositories/GenericRepository';
 
 export interface IRoleService {
   createRole(role: Role): Promise<Role>;

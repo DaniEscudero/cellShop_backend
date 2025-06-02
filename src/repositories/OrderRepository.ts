@@ -1,6 +1,5 @@
-import { Order, OrderModel } from '@models/Order';
-import { Product, ProductModel } from '@models/Product';
-import { Query, Repository } from '@repositories/GenericRepository';
+import { Order, OrderModel } from '../models/Order';
+import { Query, Repository } from '../repositories/GenericRepository';
 
 export interface IOrderRepository extends Repository<Order> {}
 

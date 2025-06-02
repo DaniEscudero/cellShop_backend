@@ -1,9 +1,9 @@
-import { Order, OrderInputSchema } from '@models/Order';
+import { Order, OrderInputSchema } from '../models/Order';
 import {
   IOrderRepository,
   OrderRepository,
-} from '@repositories/OrderRepository';
-import { IOrderService, OrderService } from '@services/OrderService';
+} from '../repositories/OrderRepository';
+import { IOrderService, OrderService } from '../services/OrderService';
 import { Request, Response } from 'express';
 
 const orderRepository: IOrderRepository = new OrderRepository();

@@ -1,5 +1,5 @@
-import { Query, Repository } from "@repositories/GenericRepository";
-import { Role, RoleModel } from "@models/Role";
+import { Query, Repository } from '../repositories/GenericRepository';
+import { Role, RoleModel } from '../models/Role';
 
 export interface IRoleRepository extends Repository<Role> {}
 

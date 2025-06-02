@@ -1,5 +1,5 @@
-import { Product, ProductModel } from '@models/Product';
-import { Query, Repository } from '@repositories/GenericRepository';
+import { Product, ProductModel } from '../models/Product';
+import { Query, Repository } from '../repositories/GenericRepository';
 
 export interface IProductRepository extends Repository<Product> {}
 

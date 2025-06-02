@@ -1,9 +1,9 @@
-import { Product, ProductInputSchema } from '@models/Product';
+import { Product, ProductInputSchema } from '../models/Product';
 import {
   IProductRepository,
   ProductRepository,
-} from '@repositories/ProductRepository';
-import { IProductService, ProductService } from '@services/ProductService';
+} from '../repositories/ProductRepository';
+import { IProductService, ProductService } from '../services/ProductService';
 import { Request, Response } from 'express';
 
 const productRepository: IProductRepository = new ProductRepository();

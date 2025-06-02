@@ -1,6 +1,6 @@
-import { Product } from '@models/Product';
-import { Query } from '@repositories/GenericRepository';
-import { IProductRepository } from '@repositories/ProductRepository';
+import { Product } from '../models/Product';
+import { Query } from '../repositories/GenericRepository';
+import { IProductRepository } from '../repositories/ProductRepository';
 
 export interface IProductService {
   createProduct(Product: Product): Promise<Product>;

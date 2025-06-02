@@ -1,6 +1,6 @@
-import { IUserRepository } from "@repositories/UserRepository";
-import { User } from "@models/User";
-import { Query } from "@repositories/GenericRepository";
+import { IUserRepository } from '../repositories/UserRepository';
+import { User } from '../models/User';
+import { Query } from '../repositories/GenericRepository';
 
 export interface IUserService {
   createUser(user: User): Promise<User>;

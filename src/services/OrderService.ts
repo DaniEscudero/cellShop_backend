@@ -1,8 +1,6 @@
-import { Order } from '@models/Order';
-import { Product } from '@models/Product';
-import { Query } from '@repositories/GenericRepository';
-import { IOrderRepository } from '@repositories/OrderRepository';
-import { IProductRepository } from '@repositories/ProductRepository';
+import { Order } from '../models/Order';
+import { Query } from '../repositories/GenericRepository';
+import { IOrderRepository } from '../repositories/OrderRepository';
 
 export interface IOrderService {
   createOrder(order: Order): Promise<Order>;

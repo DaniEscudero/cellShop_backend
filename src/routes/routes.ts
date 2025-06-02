@@ -3,39 +3,39 @@ import {
   loginUser,
   registerUser,
   verify,
-} from '@controllers/auth/authController';
+} from '../controllers/auth/authController';
 import {
   createUser,
   deleteUser,
   findUsers,
   findUsersById,
   updateUser,
-} from '@controllers/UserController';
+} from '../controllers/UserController';
 import {
   createRole,
   deleteRole,
   findRoleById,
   findRoles,
   updateRole,
-} from '@controllers/RoleController';
-import { verifyAdminToken, verifyToken } from 'middlewares/auth';
-import { checkRoles } from 'middlewares/roles';
+} from '../controllers/RoleController';
+import { verifyAdminToken, verifyToken } from '../middlewares/auth';
+import { checkRoles } from '../middlewares/roles';
 import {
   createProduct,
   deleteProduct,
   findProductById,
   findProducts,
   updateProduct,
-} from '@controllers/ProductController';
-import { uploadImage } from '@controllers/uploadController';
-import { upload } from 'middlewares/multer';
+} from '../controllers/ProductController';
+import { uploadImage } from '../controllers/uploadController';
+import { upload } from '../middlewares/multer';
 import {
   createOrder,
   deleteOrder,
   findOrderById,
   findOrders,
   updateOrder,
-} from '@controllers/OrderController';
+} from '../controllers/OrderController';
 
 const router = Router();
 
