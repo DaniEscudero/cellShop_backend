@@ -1,5 +1,9 @@
 import { Router } from 'express';
-import { loginUser, registerUser } from '@controllers/auth/authController';
+import {
+  loginUser,
+  registerUser,
+  verify,
+} from '@controllers/auth/authController';
 import {
   createUser,
   deleteUser,
@@ -23,6 +27,15 @@ import {
   findProducts,
   updateProduct,
 } from '@controllers/ProductController';
+import { uploadImage } from '@controllers/uploadController';
+import { upload } from 'middlewares/multer';
+import {
+  createOrder,
+  deleteOrder,
+  findOrderById,
+  findOrders,
+  updateOrder,
+} from '@controllers/OrderController';
 
 const router = Router();
 
@@ -34,6 +47,7 @@ export default () => {
   // AUTH ROUTES
   router.post('/auth/register', registerUser);
   router.post('/auth/login', loginUser);
+  router.get('/auth/session', verifyToken, verify);
 
   // USERS ROUTES
   router.get('/users', verifyAdminToken, findUsers);
@@ -55,6 +69,16 @@ export default () => {
   router.post('/products/', verifyAdminToken, createProduct);
   router.put('/products/:id/', verifyAdminToken, updateProduct);
   router.delete('/products/:id', verifyAdminToken, deleteProduct);
+
+  // PRODUCTS ROUTES
+  router.get('/orders', verifyAdminToken, findOrders);
+  router.get('/orders/:id/', verifyAdminToken, findOrderById);
+  router.post('/orders/', createOrder);
+  router.put('/orders/:id/', verifyAdminToken, updateOrder);
+  router.delete('/orders/:id', verifyAdminToken, deleteOrder);
+
+  // IMAGES ROUTES
+  router.post('/upload', verifyAdminToken, upload.single('image'), uploadImage);
 
   return router;
 };

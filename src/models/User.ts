@@ -1,4 +1,4 @@
-import mongoose, { Document, Schema } from 'mongoose';
+import mongoose, { Document, ObjectId, Schema } from 'mongoose';
 import bcrypt from 'bcrypt';
 import { Role } from '@models/Role';
 
@@ -17,7 +17,10 @@ export type IUserInput = z.infer<typeof UserInputSchema>;
 
 export interface User extends Document, IUserInput {
   _id: string;
-  role: Schema.Types.ObjectId;
+  role: {
+    _id: ObjectId;
+    name: string;
+  };
 
   comparePassword(password: string): Promise<boolean>;
 }

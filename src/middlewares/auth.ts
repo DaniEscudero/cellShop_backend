@@ -61,10 +61,7 @@ export const verifyAdminToken = async (
       return;
     }
 
-    const getRole = await roleService.findRoleById(getUser?.role.toString());
-    console.log(getRole);
-
-    if (!getRole || getRole.name != RoleEnum.admin) {
+    if (!getUser.role.name || getUser.role.name != RoleEnum.admin) {
       res
         .status(401)
         .json({
