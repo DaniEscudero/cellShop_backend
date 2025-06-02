@@ -1,6 +1,9 @@
-import { User } from '@models/User';
-import { IUserRepository, UserRepository } from '@repositories/UserRepository';
-import { IUserService, UserService } from '@services/UserService';
+import { User } from '../models/User';
+import {
+  IUserRepository,
+  UserRepository,
+} from '../repositories/UserRepository';
+import { IUserService, UserService } from '../services/UserService';
 import { Request, Response } from 'express';
 
 const userRepository: IUserRepository = new UserRepository();

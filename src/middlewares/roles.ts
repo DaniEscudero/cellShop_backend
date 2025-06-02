@@ -1,6 +1,9 @@
-import { RoleEnum } from '@models/Role';
-import { IRoleRepository, RoleRepository } from '@repositories/RoleRepository';
-import { IRoleService, RoleService } from '@services/RoleService';
+import { RoleEnum } from '../models/Role';
+import {
+  IRoleRepository,
+  RoleRepository,
+} from '../repositories/RoleRepository';
+import { IRoleService, RoleService } from '../services/RoleService';
 import { NextFunction, Request, Response } from 'express';
 
 const roleRepository: IRoleRepository = new RoleRepository();

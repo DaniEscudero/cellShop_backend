@@ -1,7 +1,5 @@
 import mongoose, { Document, ObjectId, Schema } from 'mongoose';
 import bcrypt from 'bcrypt';
-import { Role } from '@models/Role';
-
 import { z } from 'zod';
 
 export const UserInputSchema = z.object({

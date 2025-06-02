@@ -1,7 +1,7 @@
 import { v2 as cloudinary } from 'cloudinary';
 import { Request, Response } from 'express';
-import { cnyConfig } from 'utils/cloudinary';
-import { HttpErrorResponse } from 'utils/utils';
+import { cnyConfig } from '../utils/cloudinary';
+import { HttpErrorResponse } from '../utils/utils';
 
 export const uploadImage = async (req: Request, res: Response) => {
   //cloudinary.config(cnyConfig);

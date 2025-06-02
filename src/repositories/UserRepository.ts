@@ -1,5 +1,5 @@
-import { Query, Repository } from '@repositories/GenericRepository';
-import { User, UserModel } from '@models/User';
+import { Query, Repository } from '../repositories/GenericRepository';
+import { User, UserModel } from '../models/User';
 
 export interface IUserRepository extends Repository<User> {
   findOne(query: Query): Promise<User | null>;
