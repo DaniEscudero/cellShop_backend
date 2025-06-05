@@ -41,7 +41,7 @@ const router = Router();
 
 export default () => {
   router.get('/health', (req, res) => {
-    res.json({ message: 'API is healthy!!!' }).send();
+    res.json({ message: 'API is healthy!!!!' }).send();
   });
 
   // AUTH ROUTES
