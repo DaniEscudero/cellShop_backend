@@ -70,7 +70,7 @@ export default () => {
   router.put('/products/:id/', verifyAdminToken, updateProduct);
   router.delete('/products/:id', verifyAdminToken, deleteProduct);
 
-  // PRODUCTS ROUTES
+  // ORDERS ROUTES
   router.get('/orders', verifyAdminToken, findOrders);
   router.get('/orders/:id/', verifyAdminToken, findOrderById);
   router.post('/orders/', createOrder);
